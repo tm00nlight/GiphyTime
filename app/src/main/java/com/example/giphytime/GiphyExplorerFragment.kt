@@ -1,6 +1,7 @@
 package com.example.giphytime
 
 import android.content.ContentProvider
+import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -95,9 +96,17 @@ class GiphyExplorerFragment : Fragment() {
 
         override fun onBindViewHolder(holder: GIFHolder, position: Int) {
             val giphyItem = giphyItems[position]
+            holder.imageView.setOnClickListener {
+                activity!!.supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, GiphyItemFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit()
+            }
             holder.bindDrawables(giphyItem.images.fixed_height.url)
         }
 
     }
+
 }
 
