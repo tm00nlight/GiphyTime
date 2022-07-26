@@ -76,6 +76,7 @@ class GiphyExplorerFragment : Fragment() {
                 .with(requireContext())
                 .load(url)
                 .centerCrop()
+                .placeholder(R.drawable.giphy_loading_light)
                 .into(imageView)
         }
 
@@ -99,7 +100,7 @@ class GiphyExplorerFragment : Fragment() {
             holder.imageView.setOnClickListener {
                 activity!!.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.fragmentContainer, GiphyItemFragment.newInstance())
+                    .replace(R.id.fragmentContainer, GiphyItemFragment.newInstance(position))
                     .addToBackStack(null)
                     .commit()
             }
